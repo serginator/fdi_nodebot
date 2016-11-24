@@ -1,7 +1,7 @@
 {
   "name": "fdi_nodebot",
-  "version": "0.0.1",
-  "description": "Bot for FDI Telegram chat to keep an eye on birthdays and maybe create doodles",
+  "version": "1.0.0",
+  "description": "Bot to remember birthdays in a Telegram chat for old university colleagues",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@bitbucket.org/serginator/fdi_nodebot.git"
+    "url": "git+ssh://git@github.com/serginator/fdi_nodebot.git"
   },
   "keywords": [
     "fdibot",
@@ -20,7 +20,7 @@
   ],
   "author": "Sergio Ruiz (@serginator)",
   "license": "MIT",
-  "homepage": "https://bitbucket.org/serginator/fdibot#readme",
+  "homepage": "https://serginator.github.com/fdi_nodebot",
   "dependencies": {
     "dotenv": "^2.0.0",
     "express": "^4.14.0",

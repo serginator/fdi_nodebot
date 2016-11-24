@@ -65,7 +65,7 @@ function getNext() {
 function help() {
     var msg = '';
 
-    msg += 'Hola! Soy FDI Bot, y me encargo de felicitar cumpleaños.\n';
+    msg += 'Hola! Soy FDI Bot y me encargo de felicitar cumpleaños.\n';
     msg += 'También me podéis dar alguna orden:\n\n';
     msg += '/ayuda: Este comando\n';
     msg += '/lista: Lista de cumpleaños\n';
@@ -87,7 +87,7 @@ setInterval(function() {
                 }
                 msg += '. Felicidades!!!!';
             }
-            bot.sendMessage('-158674743', msg);
+            bot.sendMessage(process.env.CHANNEL_ID, msg);
         }
     }
 }, 1000 * 60 * 60);
