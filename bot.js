@@ -2,7 +2,9 @@ var TelegramBot = require('node-telegram-bot-api'),
     birthdays = require('./birthdays'),
     dotenv = require('dotenv').config({silent: true}),
     token = process.env.TELEGRAM_TOKEN,
-    bot = new TelegramBot(token, { polling: true });
+    bot = new TelegramBot(token, { polling: true }),
+    count = 0,
+    interval;
 
 function checkBirthdays() {
     var date = new Date(),
@@ -73,40 +75,49 @@ function help() {
     return msg;
 }
 
-setInterval(function() {
-    var bdays = checkBirthdays(),
-        msg;
-    if ((new Date()).getHours() === 8) {
-        if (bdays.length > 0) {
-            if (bdays.length === 1) {
-                msg = 'Es el cumpleaños de ' + bdays[0] + '. Felicidades!!!!';
-            } else {
+(function clearAndSetInterval() {
+    clearInterval(interval);
+    count = 0;
+    interval = setInterval(function() {
+        var bdays = checkBirthdays(),
+            msg;
+        count++;
+        if ((new Date()).getHours() === 8) {
+            if (bdays.length > 0) {
                 msg = 'Es el cumpleaños de ' + bdays[0];
-                for (var i = 1, n = bdays.length; i < n; i++) {
-                    msg += ' y ' + bdays[i];
+                if (bdays.length > 1) {
+                    for (var i = 1, n = bdays.length; i < n; i++) {
+                        msg += ' y ' + bdays[i];
+                    }
                 }
                 msg += '. Felicidades!!!!';
+                bot.sendMessage(process.env.CHANNEL_ID, msg);
             }
-            bot.sendMessage(process.env.CHANNEL_ID, msg);
         }
-    }
-}, 1000 * 60 * 60);
+        if (count === 10) {
+            clearAndSetInterval();
+        }
+    }, 1000 * 60 * 60);
+})();
 
 // Matches "/lista"
 bot.onText(/\/lista/, function (msg, match) {
   var chatId = msg.chat.id;
+  console.log('\'/lista\' command called by @' + msg.from.username);
   bot.sendMessage(chatId, getListOfBirthdays());
 });
 
 // Matches "/ayuda"
 bot.onText(/\/ayuda/, function (msg, match) {
     var chatId = msg.chat.id;
+    console.log('\'/ayuda\' command called by @' + msg.from.username);
     bot.sendMessage(chatId, help());
 });
 
 // Matches "/siguiente"
 bot.onText(/\/siguiente/, function (msg, match) {
     var chatId = msg.chat.id;
+    console.log('\'/siguiente\' command called by @' + msg.from.username);
     bot.sendMessage(chatId, getNext());
 });
 
