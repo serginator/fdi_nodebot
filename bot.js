@@ -82,8 +82,9 @@ function help() {
         var bdays = checkBirthdays(),
             msg;
         count++;
-        if ((new Date()).getHours() === 8) {
+        if ((new Date()).getHours() === 6) {
             if (bdays.length > 0) {
+                console.log('Today bday(s) is(are): ', bdays);
                 msg = 'Es el cumpleaños de ' + bdays[0];
                 if (bdays.length > 1) {
                     for (var i = 1, n = bdays.length; i < n; i++) {
@@ -91,6 +92,7 @@ function help() {
                     }
                 }
                 msg += '. Felicidades!!!!';
+                console.log('Sending bday message to channel: ', msg);
                 bot.sendMessage(process.env.CHANNEL_ID, msg);
             }
         }
