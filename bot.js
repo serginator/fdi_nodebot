@@ -69,9 +69,9 @@ function help() {
 
     msg += 'Hola! Soy FDI Bot y me encargo de felicitar cumpleaños.\n';
     msg += 'También me podéis dar alguna orden:\n\n';
-    msg += '/ayuda: Este comando\n';
-    msg += '/lista: Lista de cumpleaños\n';
-    msg += '/siguiente: Próximo cumpleaños\n';
+    msg += '/help: Este comando\n';
+    msg += '/list: Lista de cumpleaños\n';
+    msg += '/next: Próximo cumpleaños\n';
     return msg;
 }
 
@@ -102,24 +102,24 @@ function help() {
     }, 1000 * 60 * 60);
 })();
 
-// Matches "/lista"
-bot.onText(/\/lista/, function (msg, match) {
+// Matches "/list"
+bot.onText(/\/list/, function (msg, match) {
   var chatId = msg.chat.id;
-  console.log('\'/lista\' command called by @' + msg.from.username);
+  console.log('\'/list\' command called by @' + msg.from.username);
   bot.sendMessage(chatId, getListOfBirthdays());
 });
 
-// Matches "/ayuda"
-bot.onText(/\/ayuda/, function (msg, match) {
+// Matches "/help"
+bot.onText(/\/help/, function (msg, match) {
     var chatId = msg.chat.id;
-    console.log('\'/ayuda\' command called by @' + msg.from.username);
+    console.log('\'/help\' command called by @' + msg.from.username);
     bot.sendMessage(chatId, help());
 });
 
-// Matches "/siguiente"
-bot.onText(/\/siguiente/, function (msg, match) {
+// Matches "/next"
+bot.onText(/\/next/, function (msg, match) {
     var chatId = msg.chat.id;
-    console.log('\'/siguiente\' command called by @' + msg.from.username);
+    console.log('\'/next\' command called by @' + msg.from.username);
     bot.sendMessage(chatId, getNext());
 });
 
