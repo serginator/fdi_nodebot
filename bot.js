@@ -109,10 +109,10 @@ bot.onText(/\/list/, function (msg, match) {
   bot.sendMessage(chatId, getListOfBirthdays());
 });
 
-// Matches "/help"
-bot.onText(/\/help/, function (msg, match) {
+// Matches "/help" or "/start"
+bot.onText(/\/help|\/start/, function (msg, match) {
     var chatId = msg.chat.id;
-    console.log('\'/help\' command called by @' + msg.from.username);
+    console.log('\'/help\' or \'/start\' command called by @' + msg.from.username);
     bot.sendMessage(chatId, help());
 });
 
