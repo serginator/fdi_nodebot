@@ -22,8 +22,8 @@
   "license": "MIT",
   "homepage": "https://serginator.github.com/fdi_nodebot",
   "dependencies": {
-    "dotenv": "^2.0.0",
+    "dotenv": "^8.0.0",
     "express": "^4.14.0",
-    "node-telegram-bot-api": "^0.24.0"
+    "node-telegram-bot-api": "^0.30.0"
   }
 }
